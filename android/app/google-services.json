@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "95994126963",
+    "project_id": "sayac-okuma-app",
+    "storage_bucket": "sayac-okuma-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95994126963:android:73543e30bf460e0fba0006",
+        "android_client_info": {
+          "package_name": "com.example.sayac_okuma_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhsFyN6kx2_6CjXXHzB08mCDZoFEG-VKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
