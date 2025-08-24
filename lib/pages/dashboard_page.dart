@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:convert'; // <-- eklendi (Base64 decode için)
+import 'dart:convert'; // (Base64 decode için)
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,8 +7,11 @@ import 'counter_entry_page.dart';
 import 'counter_edit_page.dart';
 import 'package:intl/intl.dart'; // tarih-saat formatlama
 
-// EKLENDİ: Silme işlemi için servis
+// Silme işlemi için servis
 import '../services/counter_service.dart';
+
+// EKLENDİ: Profil sayfası
+import 'profile_page.dart';
 
 // Stateful yapıldı (tarih filtresi durumu için)
 class DashboardPage extends StatefulWidget {
@@ -22,7 +25,7 @@ class _DashboardPageState extends State<DashboardPage> {
   // tarih aralığı (null = filtre yok)
   DateTimeRange? _range;
 
-  // EKLENDİ: servis örneği
+  // servis örneği
   final _counterService = CounterService();
 
   Future<void> _pickImage(BuildContext context) async {
@@ -125,7 +128,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return q.snapshots();
   }
 
-  // GÜNCELLENDİ: Silme akışı servisi kullanıyor (uid + storagePath)
+  // Silme akışı servisi kullanıyor (uid + storagePath)
   Future<void> _confirmAndDelete({
     required String docId,
     required String sayacNo,
@@ -183,6 +186,18 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
         title: const Text("Dashboard"),
         actions: [
+          // EKLENDİ: Profil kısayolu
+          IconButton(
+            tooltip: 'Profilim',
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfilePage()),
+              );
+            },
+          ),
+
           // filtre ve temizle
           IconButton(
             tooltip: 'Tarih Aralığı Seç',
@@ -318,7 +333,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         );
                       }
 
-                      // EKLENDİ: Storage path (varsa)
+                      // Storage path (varsa)
                       final String? storagePath = data['storage_path'] as String?;
 
                       // Card bloğu Dismissible ile sarıldı ---
